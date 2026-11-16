@@ -1,13 +1,12 @@
 import { useRef } from 'react'
 import { gsap, reducedMotion, useGSAP } from '../motion'
-import { Mark } from '../components/Logo'
 
 const NOTES = [
-  { kind: 'Friday risk note', date: 'Nov 20', title: 'Premiums 2.4× normal this weekend', body: 'Fed speech on Saturday, NVDA earnings Tuesday. Weekend perps already lean short.', tone: 'blue', stat: '2.4×' },
-  { kind: 'Monday scorecard', date: 'Nov 23', title: 'NVDA opened −9.1%. 212 policies paid.', body: '$8,480 paid out from the pool. Priced risk ranked NVDA first of four.', tone: 'orange', stat: '$8.5K' },
-  { kind: 'Holiday note', date: 'Nov 25', title: 'Thanksgiving: one closure, 89 hours', body: 'Closed Thursday, half day Friday. Cover priced as one long window.', tone: 'ink', stat: '89h' },
-  { kind: 'Earnings night', date: 'Nov 17', title: 'NVDA after close, cover sold out at cap', body: 'The pool hit its per-closure exposure cap 40 minutes before the bell.', tone: 'blue', stat: 'Cap' },
-  { kind: 'Monday scorecard', date: 'Nov 30', title: 'Calm open. Underwriters kept 100%.', body: 'Largest gap −1.8% on METAc, inside every deductible.', tone: 'orange', stat: '0 paid' },
+  { kind: 'Friday risk note', date: 'Nov 20', title: 'Premiums 2.4× normal this weekend', body: 'Fed speech on Saturday, NVDA earnings Tuesday. Weekend perps already lean short.', tone: 'blue', stat: '2.4×', img: 'risk-note' },
+  { kind: 'Monday scorecard', date: 'Nov 23', title: 'NVDA opened −9.1%. 212 policies paid.', body: '$8,480 paid out from the pool. Priced risk ranked NVDA first of four.', tone: 'orange', stat: '$8.5K', img: 'scorecard' },
+  { kind: 'Holiday note', date: 'Nov 25', title: 'Thanksgiving: one closure, 89 hours', body: 'Closed Thursday, half day Friday. Cover priced as one long window.', tone: 'ink', stat: '89h', img: 'holiday' },
+  { kind: 'Earnings night', date: 'Nov 17', title: 'NVDA after close, cover sold out at cap', body: 'The pool hit its per-closure exposure cap 40 minutes before the bell.', tone: 'blue', stat: 'Cap', img: 'earnings' },
+  { kind: 'Monday scorecard', date: 'Nov 30', title: 'Calm open. Underwriters kept 100%.', body: 'Largest gap −1.8% on METAc, inside every deductible.', tone: 'orange', stat: '0 paid', img: 'calm' },
 ]
 
 export default function Agent() {
@@ -45,7 +44,7 @@ export default function Agent() {
           {NOTES.map((n) => (
             <article className={`note note-${n.tone}`} key={n.title}>
               <div className="note-art">
-                <Mark size={30} tone="paper" />
+                <img src={`/agent/${n.img}.webp`} alt="" loading="lazy" width="768" height="512" />
                 <span className="note-stat">{n.stat}</span>
               </div>
               <div className="note-body">

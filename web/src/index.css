@@ -888,14 +888,11 @@ button {
   flex-direction: column;
 }
 .note-art {
-  height: 200px;
+  position: relative;
+  aspect-ratio: 3 / 2;
   margin: 10px;
   border-radius: 14px;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  color: var(--paper);
+  overflow: hidden;
   background: var(--ink);
 }
 .note-blue .note-art {
@@ -904,10 +901,28 @@ button {
 .note-orange .note-art {
   background: var(--orange);
 }
+.note-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.04);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.note:hover .note-art img {
+  transform: scale(1.1);
+}
 .note-stat {
-  font: 800 64px/0.9 var(--display);
-  font-variation-settings: 'wdth' 122;
-  letter-spacing: -0.05em;
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  background: var(--paper);
+  color: var(--ink);
+  border-radius: 10px;
+  padding: 8px 12px;
+  font: 800 26px/1 var(--display);
+  font-variation-settings: 'wdth' 118;
+  letter-spacing: -0.03em;
 }
 .note-body {
   padding: 8px 20px 22px;
