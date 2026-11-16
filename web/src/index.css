@@ -299,7 +299,8 @@ button {
 .hero-title {
   font-size: clamp(52px, 9.4vw, 150px);
   font-weight: 700;
-  letter-spacing: -0.035em;
+  letter-spacing: -0.025em;
+  word-spacing: 0.04em;
   line-height: 0.92;
 }
 /* Room for descenders (g, p) inside SplitText's line masks, without changing the line spacing. */

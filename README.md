@@ -50,7 +50,16 @@ bell24 lets holders keep the position and cover the jump. Switch on cover before
   </tr>
 </table>
 
-<p align="center"><img src="docs/screens/app-receipt.png" alt="Monday receipt" width="70%"><br><b>Receipt.</b> The Monday card people share.</p>
+<table>
+  <tr>
+    <td width="50%"><img src="docs/screens/app-agent.png" alt="Pricing agent"></td>
+    <td width="50%"><img src="docs/screens/app-receipt.png" alt="Monday receipts"></td>
+  </tr>
+  <tr>
+    <td><b>Agent.</b> Friday risk note, pricing record and per-stock scores.</td>
+    <td><b>Receipts.</b> The Monday card people share, and past payouts.</td>
+  </tr>
+</table>
 
 ## Run it
 
@@ -65,7 +74,7 @@ Vite, React 19, TypeScript, GSAP (ScrollTrigger, SplitText) and Lenis. The app a
 ```
 web/src
   sections/      landing sections (Hero, Proof, Statement, GapScrub, Audience, Agent, Rules, Footer)
-  app/           /app screens (Home, Cover, Live, Vault, Receipt)
+  app/           /app: shell/ (sidebar, top bar), screens/ (Home, Cover, Live, Vault, Agent, Receipts), ui/ (charts, tabs, switch, dialogs)
   components/    Logo, Halftone, Countdown, SplitReveal, Magnetic, Marquee, RollingNumber
   market.ts      market clock (New York hours) and the payout and premium maths
   motion.ts      one Lenis instance on GSAP's ticker
