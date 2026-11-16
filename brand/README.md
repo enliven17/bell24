@@ -2,7 +2,7 @@
 
 # bell24 brand
 
-The mark is a market bell split open. The gap between the dome and the lip is the gap bell24 covers; the orange clapper is the payout.
+The mark is a market bell split open. The gap between the dome and the lip is the gap bell24 covers; the coral lip is the payout.
 
 | File | Use | Size |
 |---|---|---|
@@ -21,11 +21,11 @@ The lockup SVGs keep the wordmark as live Archivo text (loaded from Google Fonts
 
 | Name | Hex | Use |
 |---|---|---|
-| Signal Blue | `#2B4BFF` | panels, active states, the pool |
-| Gap Orange | `#FF5A1F` | actions, payouts, paid closures |
-| Ink | `#0E0E10` | type, dark surfaces |
-| Paper | `#F7F6F2` | cards, inputs |
-| Canvas | `#E7E6E1` | page ground |
+| Navy | `#002941` | type, panels, dark sections, the mark's body |
+| Coral | `#FD6E6E` | actions, payouts, the mark's lip (navy text on coral) |
+| Sky | `#B6DFED` | secondary surfaces, chart lines, the clapper on dark |
+| Paper | `#F8FCFD` | cards, inputs |
+| Canvas | `#E6F3F8` | page ground |
 | Base Blue | `#0000FF` | only inside the Base mark |
 
 Inter Tight 700 for display in Title Case, Inter for text, JetBrains Mono for numbers. Archivo Expanded 900 is reserved for the wordmark. All four are SIL OFL.
