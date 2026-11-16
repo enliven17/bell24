@@ -34,34 +34,52 @@ function WeekendDial() {
   )
 }
 
-// Eight past Monday opens. The bars past the deductible line turn orange: those are the ones that paid.
+// Eight past Monday opens on a paper chart card. Bars past the deductible paid out, and say how much.
+const GAPS = [-2.1, 4.8, -6.2, 1.1, -9.4, 3.3, -1.8, -12.6]
+const ZERO = 190
+const PX = 8
 function GapBars() {
-  const gaps = [-2.1, 4.8, -6.2, 1.1, -9.4, 3.3, -1.8, -12.6]
   return (
     <svg viewBox="0 0 400 400" className="bars">
-      <line x1="40" x2="360" y1="150" y2="150" className="bars-zero" />
-      <line x1="40" x2="360" y1="230" y2="230" className="bars-deduct" />
-      <text x="40" y="222" className="bars-note">
-        5% deductible
+      <rect x="20" y="28" width="360" height="344" rx="20" className="bars-card" />
+      <text x="44" y="68" className="bars-title">
+        Last 8 Monday opens
       </text>
-      {gaps.map((g, i) => {
-        const h = Math.abs(g) * 16
+      <text x="44" y="90" className="bars-sub">
+        NVDAc, $1,000 covered, 5% deductible
+      </text>
+      <line x1="44" x2="356" y1={ZERO} y2={ZERO} className="bars-zero" />
+      <line x1="44" x2="356" y1={ZERO + 5 * PX} y2={ZERO + 5 * PX} className="bars-deduct" />
+      {GAPS.map((g, i) => {
+        const h = Math.abs(g) * PX
+        const x = 58 + i * 38
         const paid = g < -5
+        const amount = Math.round(Math.min(-g - 5, 10) * 10)
         return (
-          <rect
-            key={i}
-            className={`bar ${paid ? 'bar-paid' : ''}`}
-            x={52 + i * 39}
-            y={g < 0 ? 150 : 150 - h}
-            width="26"
-            height={h}
-            rx="4"
-            style={{ transformOrigin: `${65 + i * 39}px 150px` }}
-          />
+          <g key={i}>
+            <rect className={`bar ${paid ? 'bar-paid' : ''}`} x={x} y={g < 0 ? ZERO : ZERO - h} width="22" height={h} rx="3" />
+            {paid && (
+              <text x={x + 11} y={ZERO + h + 16} className="bars-pay">
+                +${amount}
+              </text>
+            )}
+            <text x={x + 11} y="330" className="bars-week">
+              W{i + 1}
+            </text>
+          </g>
         )
       })}
-      <text x="40" y="380" className="bars-foot">
-        Last 8 Monday opens, NVDAc
+      <rect x="44" y="346" width="10" height="10" rx="2" className="bar-paid" />
+      <text x="60" y="355" className="bars-legend">
+        Paid out
+      </text>
+      <rect x="128" y="346" width="10" height="10" rx="2" className="bar" />
+      <text x="144" y="355" className="bars-legend">
+        Calm
+      </text>
+      <line x1="196" x2="216" y1="351" y2="351" className="bars-deduct" />
+      <text x="222" y="355" className="bars-legend">
+        Deductible
       </text>
     </svg>
   )
@@ -84,8 +102,9 @@ export default function Statement() {
         .to('.dial-cell', { fill: 'var(--orange)', stagger: 0.02, duration: 0.05 }, 0)
         .to(o, { h: 65, ease: 'none', duration: 65 * 0.02, onUpdate: () => (hours.textContent = String(Math.round(o.h))) }, 0)
 
-      gsap.from('.bar', {
+      gsap.from('.bars .bar:not([width="10"])', {
         scaleY: 0,
+        svgOrigin: (_: number, el: SVGRectElement) => `${el.x.baseVal.value + 11} ${ZERO}`,
         duration: 1,
         ease: 'expo.out',
         stagger: 0.07,

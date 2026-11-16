@@ -5,3 +5,4 @@ dist
 *.log
 .DS_Store
 brand/_shot.mjs
+brand/_dom.mjs

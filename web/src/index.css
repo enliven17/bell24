@@ -43,8 +43,8 @@ h1,
 h2,
 h3 {
   font-family: var(--display);
-  font-variation-settings: 'wdth' 118;
-  font-weight: 800;
+  font-variation-settings: 'wdth' 116;
+  font-weight: 760;
   letter-spacing: -0.035em;
   line-height: 0.95;
   margin: 0;
@@ -90,9 +90,6 @@ button {
   max-width: var(--max);
   margin-inline: auto;
   padding-inline: var(--gutter);
-}
-.split-line {
-  padding-bottom: 0.06em;
 }
 .magnetic {
   display: inline-block;
@@ -286,7 +283,7 @@ button {
 .notch-br {
   right: -1px;
   bottom: -1px;
-  padding: 30px 0 0 30px;
+  padding: 30px 1px 1px 30px;
   border-top-left-radius: var(--nr);
 }
 .notch-br::before {
@@ -300,9 +297,20 @@ button {
   background: radial-gradient(circle at 0 0, transparent calc(var(--nr) - 0.5px), var(--bg) var(--nr));
 }
 .hero-title {
-  font-size: clamp(46px, 8.6vw, 140px);
-  letter-spacing: -0.045em;
-  line-height: 0.9;
+  font-size: clamp(46px, 8.2vw, 132px);
+  font-weight: 700;
+  font-variation-settings: 'wdth' 112;
+  letter-spacing: -0.04em;
+  line-height: 0.92;
+}
+/* Room for descenders (g, p) inside SplitText's line masks, without changing the line spacing. */
+.hero-line,
+.split-line {
+  padding-bottom: 0.16em;
+}
+.hero-line-mask,
+.split-line-mask {
+  margin-bottom: -0.16em;
 }
 .hero-card {
   width: min(470px, calc(100% - 40px));
@@ -521,25 +529,44 @@ button {
 .dial-hours {
   font: 700 14px var(--mono);
 }
+.bars-card {
+  fill: var(--paper);
+}
+.bars-title {
+  fill: var(--ink);
+  font: 800 19px var(--display);
+  font-variation-settings: 'wdth' 115;
+  letter-spacing: -0.02em;
+}
+.bars-sub,
+.bars-legend {
+  fill: var(--ink-2);
+  font: 500 12px var(--sans);
+}
 .bars-zero {
   stroke: var(--ink);
-  stroke-width: 2;
+  stroke-width: 1.5;
 }
 .bars-deduct {
-  stroke: var(--paper);
-  stroke-width: 2;
-  stroke-dasharray: 6 6;
-}
-.bars-note,
-.bars-foot {
-  fill: var(--paper);
-  font: 600 13px var(--sans);
+  stroke: var(--orange);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 4;
 }
 .bar {
-  fill: rgba(14, 14, 16, 0.3);
+  fill: rgba(14, 14, 16, 0.16);
 }
 .bar-paid {
-  fill: var(--ink);
+  fill: var(--orange);
+}
+.bars-pay {
+  fill: var(--orange);
+  font: 700 11px var(--mono);
+  text-anchor: middle;
+}
+.bars-week {
+  fill: var(--ink-2);
+  font: 600 11px var(--mono);
+  text-anchor: middle;
 }
 
 /* Payout scrub */
@@ -605,7 +632,49 @@ button {
   stroke: rgba(247, 246, 242, 0.06);
 }
 .scrub-closed {
-  fill: rgba(43, 75, 255, 0.12);
+  fill: rgba(43, 75, 255, 0.07);
+}
+.scrub-day {
+  stroke: rgba(247, 246, 242, 0.12);
+  stroke-dasharray: 2 5;
+}
+.scrub-base {
+  stroke: rgba(247, 246, 242, 0.25);
+}
+.axis.strong {
+  fill: var(--paper);
+  font-weight: 600;
+}
+.scrub-zone {
+  fill: rgba(255, 90, 31, 0.1);
+}
+.scrub-ded-line,
+.scrub-limit-line {
+  stroke: rgba(255, 90, 31, 0.6);
+  stroke-dasharray: 5 5;
+}
+.zone-txt {
+  fill: rgba(255, 140, 100, 0.9);
+  font-weight: 600;
+}
+.scrub-bracket {
+  fill: none;
+  stroke: var(--paper);
+  stroke-width: 1.5;
+  transition: opacity 0.2s;
+}
+.scrub-gap-txt {
+  fill: var(--paper);
+  font: 700 15px var(--mono);
+  transition: opacity 0.2s;
+}
+.scrub-price {
+  fill: var(--paper);
+  font: 700 13px var(--mono);
+  text-anchor: end;
+  paint-order: stroke;
+  stroke: #18181b;
+  stroke-width: 6px;
 }
 .scrub-band {
   fill: var(--orange);
@@ -877,21 +946,45 @@ button {
 .rule {
   background: var(--paper);
   border-radius: var(--r);
-  padding: 24px;
-  min-height: 220px;
+  padding: 24px 24px 28px;
   display: flex;
   flex-direction: column;
   gap: 12px;
+  transition:
+    background 0.3s,
+    color 0.3s;
+}
+.rule-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 28px;
+}
+.rule-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: var(--ink);
+  color: var(--paper);
+  display: grid;
+  place-items: center;
+  transition: background 0.3s;
 }
 .rule-n {
   font-size: 13px;
   font-weight: 700;
-  color: var(--orange);
-  margin-bottom: auto;
+  color: var(--ink-2);
+}
+.rule h3 {
+  font-size: 24px;
 }
 .rule p {
   font-size: 14px;
   color: var(--ink-2);
+  max-width: 34ch;
+}
+.rule:hover .rule-icon {
+  background: var(--orange);
 }
 
 /* Footer */

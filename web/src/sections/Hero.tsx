@@ -19,7 +19,7 @@ export default function Hero() {
       let split: SplitText | undefined
       const intro = contextSafe!(() => {
         if (cancelled) return
-        split = SplitText.create('.hero-title', { type: 'lines,words', mask: 'lines' })
+        split = SplitText.create('.hero-title', { type: 'lines,words', mask: 'lines', linesClass: 'hero-line' })
         gsap
           .timeline({ defaults: { ease: 'expo.out' } })
           .fromTo(
