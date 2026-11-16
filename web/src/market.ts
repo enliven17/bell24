@@ -19,7 +19,7 @@ export function payout(covered: number, drop: number, deductible: number, limit:
 export function premium(covered: number, deductible: number, limit: number, gaps: number[], risk = 1) {
   const vol = Math.sqrt(gaps.reduce((s, g) => s + g * g, 0) / gaps.length) / 100
   const band = Math.max(limit - deductible, 0)
-  const rate = 0.0018 * (vol / 0.04) * (band / 0.1) * (0.05 / Math.max(deductible, 0.01)) ** 0.6 * risk
+  const rate = 0.0014 * (vol / 0.04) * (band / 0.1) * (0.05 / Math.max(deductible, 0.01)) ** 0.6 * risk
   return Math.max(covered * rate, 0.1)
 }
 

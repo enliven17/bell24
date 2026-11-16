@@ -346,7 +346,7 @@ export function Receipt() {
           </b>
           <b className="receipt-paid mono">+$40.00</b>
           <p>Paid automatically, Mon Nov 23, 10:00 ET.</p>
-          <small>bell24.xyz · Built on Base</small>
+          <small>bell24.xyz, built on Base</small>
         </div>
       </article>
       <div className="receipt-actions">
