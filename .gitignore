@@ -9,3 +9,4 @@ brand/_dom.mjs
 tmp/
 brand/_s2.mjs
 brand/_sp.mjs
+brand/_s*.mjs
