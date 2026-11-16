@@ -62,6 +62,29 @@ export function marketClock(now = new Date()) {
   return { open: false, secs: ahead * 60 - secs }
 }
 
+/**
+ * The weekend closure that cover bought now applies to: Friday 4:00pm ET to Monday 9:30am ET.
+ * `active` is true while that closure is under way (sales are closed, the live view applies).
+ */
+export function weekendWindow(now = new Date()) {
+  const { day, mins } = nyParts(now)
+  const premarketMonday = day === 1 && mins < 9 * 60 + 30
+  const toFri = premarketMonday ? -3 : day === 6 ? -1 : day === 0 ? -2 : 5 - day
+  const fri = new Date(now.getTime() + toFri * 864e5)
+  const mon = new Date(fri.getTime() + 3 * 864e5)
+  const fmt = (d: Date) =>
+    d.toLocaleDateString('en-US', { timeZone: 'America/New_York', weekday: 'short', month: 'short', day: 'numeric' })
+  const active = premarketMonday || day === 6 || day === 0 || (day === 5 && mins >= 16 * 60)
+  return { from: fmt(fri), to: fmt(mon), active }
+}
+
+/** The closure that cover bought at the next chance applies to: this weekend, or next weekend while one is under way. */
+export function coverWindow(now = new Date()) {
+  const w = weekendWindow(now)
+  // Three days ahead of any moment inside a closure lands on a weekday before the next Friday close.
+  return w.active ? weekendWindow(new Date(now.getTime() + 3 * 864e5)) : w
+}
+
 export function hms(total: number) {
   const s = Math.max(0, Math.floor(total))
   const h = Math.floor(s / 3600)

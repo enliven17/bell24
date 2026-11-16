@@ -1,88 +1,70 @@
 import './app.css'
 import { useRef, useState } from 'react'
-import Link from '../components/Link'
-import { BuiltOnBase, Logo } from '../components/Logo'
-import Countdown from '../components/Countdown'
 import { gsap, reducedMotion, useGSAP } from '../motion'
 import { STOCKS } from '../market'
-import { Cover, Home, Live, Receipt, Vault, type Policy } from './screens'
-
-const TABS = [
-  ['Home', '/app'],
-  ['Cover', '/app/cover'],
-  ['Live', '/app/live'],
-  ['Vault', '/app/vault'],
-  ['Receipt', '/app/receipt'],
-] as const
-
-// ponytail: demo wallet and policies live in memory. The contracts and a wallet connector replace this state.
-const START: Record<string, Policy> = {
-  NVDAc: { amount: 1000, deductible: 0.05, limit: 0.15, plan: 'once', budget: 10 },
-  AAPLc: { amount: 560, deductible: 0.05, limit: 0.15, plan: 'autopilot', budget: 10 },
-}
+import { AppProvider } from './state'
+import { ToastProvider } from './ui'
+import { normalize } from './shell/nav'
+import { Sidebar, TabBar } from './shell/Sidebar'
+import { TopBar } from './shell/TopBar'
+import { Agent, Cover, Home, Live, Receipt, Vault } from './screens'
 
 export default function AppShell({ path }: { path: string }) {
-  const root = useRef<HTMLDivElement>(null)
-  const [wallet, setWallet] = useState<string | null>(null)
-  const [policies, setPolicies] = useState(START)
-  const [pick, setPick] = useState(STOCKS[0].sym)
+  return (
+    <ToastProvider>
+      <AppProvider>
+        <Shell path={path} />
+      </AppProvider>
+    </ToastProvider>
+  )
+}
 
+function Shell({ path }: { path: string }) {
+  const main = useRef<HTMLElement>(null)
+  const [pick, setPick] = useState(STOCKS[0].sym)
+  const here = normalize(path)
+
+  // Screen enter: each top-level block rises in, staggered. Synchronous, so StrictMode's
+  // double-invoke is handled by useGSAP's own revert.
   useGSAP(
     () => {
       if (reducedMotion()) return
-      gsap.from('.screen > *', { y: 28, autoAlpha: 0, duration: 0.8, ease: 'expo.out', stagger: 0.06 })
+      gsap.from('.ap-screen > *', { y: 22, autoAlpha: 0, duration: 0.7, ease: 'expo.out', stagger: 0.05, clearProps: 'transform,opacity,visibility' })
     },
-    { scope: root, dependencies: [path] },
+    { scope: main, dependencies: [here] },
   )
 
-  const setPolicy = (sym: string, p: Policy | null) =>
-    setPolicies((all) => {
-      const { [sym]: _, ...rest } = all
-      return p ? { ...rest, [sym]: p } : rest
-    })
-
   const screen = (() => {
-    switch (path.replace(/\/$/, '')) {
+    switch (here) {
       case '/app/cover':
-        return <Cover sym={pick} setSym={setPick} policy={policies[pick]} onSave={(p) => setPolicy(pick, p)} />
+        return <Cover sym={pick} setSym={setPick} />
       case '/app/live':
-        return <Live policies={policies} />
+        return <Live />
       case '/app/vault':
         return <Vault />
+      case '/app/agent':
+        return <Agent />
       case '/app/receipt':
         return <Receipt />
       default:
-        return <Home policies={policies} onProtect={setPick} />
+        return <Home onProtect={setPick} />
     }
   })()
 
   return (
-    <div className="app" ref={root}>
-      <header className="app-top">
-        <Link href="/" aria-label="bell24 home">
-          <Logo size={24} />
-        </Link>
-        <nav className="app-tabs" aria-label="App">
-          {TABS.map(([label, href]) => (
-            <Link key={href} href={href} className={path.replace(/\/$/, '') === href ? 'is-on' : ''}>
-              {label}
-            </Link>
-          ))}
-        </nav>
-        <div className="app-end">
-          <Countdown compact />
-          <button className="btn btn-line app-wallet" onClick={() => setWallet(wallet ? null : '0x7a3f…c41e')}>
-            {wallet ?? 'Connect wallet'}
-          </button>
-        </div>
-      </header>
-      <main className="screen wrap" key={path}>
-        {screen}
-      </main>
-      <footer className="app-foot wrap">
-        <BuiltOnBase />
-        <span>Demo data. Cover is protection, not insurance. Not available to US persons.</span>
-      </footer>
+    <div className="ap-app">
+      <Sidebar path={here} />
+      <div className="ap-app-main">
+        <TopBar />
+        <main className="ap-screen" key={here} ref={main} id="main">
+          {screen}
+        </main>
+        <footer className="ap-app-foot">
+          <span>Demo data. Wallet, quotes and weekend prices are stand-ins until the contracts and feeds are live.</span>
+          <span>Cover pays in USDC. Not available to US persons.</span>
+        </footer>
+      </div>
+      <TabBar path={here} />
     </div>
   )
 }
