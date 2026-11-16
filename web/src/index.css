@@ -242,7 +242,8 @@ button {
 .hero-panel {
   position: relative;
   height: max(620px, calc(100svh - 150px));
-  border-radius: 28px;
+  /* the notches cover the top-left and bottom-right corners, so those stay square: no edge peeks out */
+  border-radius: 0 28px 0 28px;
   overflow: hidden;
   background: var(--blue);
   transform-origin: 50% 0;
