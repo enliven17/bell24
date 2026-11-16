@@ -2,6 +2,8 @@
 
 <p align="center"><b>Protect your stock tokens while Wall Street is closed.</b><br>Built on Base for Base Stocks Maxxing, Programmable Stock Markets track.</p>
 
+<p align="center"><a href="https://bell24.vercel.app"><b>bell24.vercel.app</b></a></p>
+
 <p align="center">
   <img src="brand/logo/mark-color.png" width="56" alt="bell24 mark">
 </p>
