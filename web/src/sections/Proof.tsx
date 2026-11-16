@@ -2,6 +2,7 @@ import { useRef } from 'react'
 import Marquee from '../components/Marquee'
 import SplitReveal from '../components/SplitReveal'
 import { BaseMark } from '../components/Logo'
+import { STOCK_LOGOS } from '../components/stockLogos'
 import { gsap, reducedMotion, useGSAP } from '../motion'
 
 const PARTNERS = ['NVDAc', 'Chainlink', 'AAPLc', 'USDC', 'METAc', 'Base', 'GOOGLc', 'x402', 'ERC-4626', 'Coinbase Stocks API']
@@ -29,8 +30,15 @@ function Tickers() {
     <div className="viz-tickers" aria-hidden="true">
       {TICKERS.map(([s, m, dir]) => (
         <span key={s} className={`tk tk-${dir}`}>
-          <b>{s}</b>
-          <i className="mono">{m}</i>
+          <span className="tk-logo">
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+              <path d={STOCK_LOGOS[s]} fill="currentColor" />
+            </svg>
+          </span>
+          <span className="tk-txt">
+            <b>{s}</b>
+            <i className="mono">{m}</i>
+          </span>
         </span>
       ))}
     </div>

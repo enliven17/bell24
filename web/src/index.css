@@ -455,13 +455,30 @@ button {
 .tk {
   background: rgba(247, 246, 242, 0.14);
   border-radius: 10px;
-  padding: 10px 11px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 0;
+}
+.tk-logo {
+  flex: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: var(--paper);
+  color: var(--ink);
+  display: grid;
+  place-items: center;
+}
+.tk-txt {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 2px;
+  min-width: 0;
 }
 .tk b {
-  font: 800 16px var(--display);
+  font: 800 14px var(--display);
   font-variation-settings: 'wdth' 112;
 }
 .tk i {
@@ -589,10 +606,14 @@ button {
   position: relative;
   display: flex;
   flex-direction: column;
-  font-size: clamp(48px, 8.2vw, 136px);
+  font-size: clamp(40px, 7.2vw, 124px);
   letter-spacing: -0.05em;
-  line-height: 0.9;
+  line-height: 1;
+  gap: 0.06em;
   margin-bottom: clamp(48px, 6vw, 88px);
+}
+.statement-line {
+  white-space: nowrap;
 }
 .statement-line:nth-child(2) {
   align-self: flex-end;
@@ -1331,6 +1352,54 @@ button {
   }
   .aud-figs {
     grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 560px) {
+  .stats {
+    grid-template-columns: 1fr;
+  }
+  .stat {
+    min-height: 0;
+  }
+  .stat-viz {
+    padding: 24px 0;
+  }
+  .viz-dial {
+    width: 130px;
+  }
+  .statement {
+    font-size: clamp(36px, 11vw, 54px);
+  }
+  .statement-line {
+    white-space: normal;
+  }
+  .statement-line:nth-child(2) {
+    align-self: flex-start;
+  }
+  /* SVG text scales with the chart; bump it so labels stay readable at phone width. */
+  .scrub-chart .axis {
+    font-size: 20px;
+  }
+  .scrub-gap-txt,
+  .scrub-price {
+    font-size: 24px;
+  }
+  .scrub-chart .zone-txt,
+  .scrub-chart .scrub-day + text {
+    display: none;
+  }
+  .scrub {
+    padding-top: 84px;
+  }
+  .scrub-copy p {
+    margin: 14px 0 18px;
+    font-size: 14px;
+  }
+  .scrub-read b {
+    font-size: 26px;
+  }
+  .partners-k {
+    display: none;
   }
 }
 @media (prefers-reduced-motion: reduce) {
