@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@125,900&family=Inter+Tight:wght@500..800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap');
 
 :root {
-  --bg: #e7e6e1;
-  --paper: #f7f6f2;
-  --ink: #0e0e10;
-  --ink-2: #55555c;
-  --blue: #2b4bff;
-  --orange: #ff5a1f;
+  --bg: #E6F3F8;
+  --paper: #F8FCFD;
+  --ink: #002941;
+  --ink-2: #4B6878;
+  --blue: #002941;
+  --orange: #FD6E6E;
   --base: #0000ff;
 }
 * {

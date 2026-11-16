@@ -1,11 +1,11 @@
 // Shared brand pieces for the HTML sources: the mark (same geometry as web/src/components/Logo.tsx) and the halftone.
-export const C = { bg: '#E7E6E1', paper: '#F7F6F2', ink: '#0E0E10', blue: '#2B4BFF', orange: '#FF5A1F', base: '#0000FF' }
+export const C = { bg: '#E6F3F8', paper: '#F8FCFD', ink: '#002941', blue: '#002941', orange: '#FD6E6E', sky: '#B6DFED', base: '#0000FF' }
 
 export const TONES = {
-  color: [C.ink, C.blue, C.orange],
+  color: [C.ink, C.orange, C.ink],
   ink: [C.ink, C.ink, C.ink],
   white: [C.paper, C.paper, C.paper],
-  paper: [C.paper, C.blue, C.orange],
+  paper: [C.paper, C.orange, C.sky],
 }
 
 export function markSvg(tone = 'color', size = 64) {

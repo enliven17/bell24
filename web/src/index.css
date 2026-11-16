@@ -1,13 +1,15 @@
 :root {
-  --bg: #e7e6e1;
-  --paper: #f7f6f2;
-  --ink: #0e0e10;
-  --ink-2: #55555c;
-  --line: rgba(14, 14, 16, 0.12);
-  --blue: #2b4bff;
-  --blue-deep: #1a32d6;
-  --orange: #ff5a1f;
-  --orange-soft: #ffe2d6;
+  --bg: #E6F3F8;
+  --paper: #F8FCFD;
+  --ink: #002941;
+  --ink-2: #4B6878;
+  --line: rgba(0, 41, 65, 0.12);
+  --blue: #002941;
+  --blue-deep: #001a2b;
+  --orange: #FD6E6E;
+  --orange-soft: #FFE1E1;
+  --sky: #b6dfed;
+  --on-orange: #002941;
   --r: 22px;
   --display: 'Inter Tight', 'Inter', system-ui, sans-serif;
   --wordmark: 'Archivo', 'Inter Tight', system-ui, sans-serif;
@@ -35,16 +37,16 @@ html {
 
 /* Scrollbars: a slim squared ink thumb on the canvas, orange while dragged. No pill ends. */
 ::-webkit-scrollbar {
-  width: 12px;
-  height: 10px;
+  width: 7px;
+  height: 7px;
 }
 ::-webkit-scrollbar-track {
   background: var(--bg);
 }
 ::-webkit-scrollbar-thumb {
   background: var(--ink);
-  border-radius: 3px;
-  border: 3px solid var(--bg);
+  border-radius: 2px;
+  border: 1px solid var(--bg);
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--blue);
@@ -57,18 +59,18 @@ html {
 }
 /* Inner scrollers (tab rows, code, card tracks) get a lighter, thinner bar. */
 :where(body *)::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 4px;
+  height: 4px;
 }
 :where(body *)::-webkit-scrollbar-track {
   background: transparent;
 }
 :where(body *)::-webkit-scrollbar-thumb {
   border: 0;
-  background: rgba(14, 14, 16, 0.25);
+  background: rgba(0, 41, 65, 0.25);
 }
 .aviz-agent::-webkit-scrollbar-thumb {
-  background: rgba(247, 246, 242, 0.3);
+  background: rgba(248, 252, 253, 0.3);
 }
 ::selection {
   background: var(--blue);
@@ -174,7 +176,7 @@ button {
 }
 .btn-orange {
   background: var(--orange);
-  color: #fff;
+  color: var(--on-orange);
 }
 .btn-orange:hover {
   background: var(--ink);
@@ -199,7 +201,7 @@ button {
 }
 .btn-paper:hover {
   background: var(--orange);
-  color: #fff;
+  color: var(--on-orange);
 }
 
 /* Logo */
@@ -440,7 +442,7 @@ button {
 }
 .stat {
   background: var(--orange);
-  color: #fff;
+  color: var(--on-orange);
   border-radius: var(--r);
   padding: 20px 20px 22px;
   display: flex;
@@ -449,6 +451,7 @@ button {
 }
 .stat:nth-child(even) {
   background: var(--blue);
+  color: var(--paper);
 }
 .stat-top {
   display: flex;
@@ -502,7 +505,7 @@ button {
   gap: 6px;
 }
 .tk {
-  background: rgba(247, 246, 242, 0.14);
+  background: rgba(248, 252, 253, 0.14);
   border-radius: 10px;
   padding: 10px;
   display: flex;
@@ -536,10 +539,10 @@ button {
   font-weight: 700;
 }
 .tk-down i {
-  color: #ffd0bd;
+  color: #FFD3D3;
 }
 .tk-up i {
-  color: #c9f2d6;
+  color: #B6DFED;
 }
 .viz-dial {
   width: min(150px, 80%);
@@ -547,25 +550,25 @@ button {
 }
 .dial-track {
   fill: none;
-  stroke: rgba(247, 246, 242, 0.2);
+  stroke: rgba(248, 252, 253, 0.2);
   stroke-width: 10;
 }
 .dial-arc {
   fill: none;
-  stroke: var(--paper);
+  stroke: var(--ink);
   stroke-width: 10;
 }
 .dial-tick {
-  stroke: rgba(247, 246, 242, 0.6);
+  stroke: rgba(0, 41, 65, 0.5);
   stroke-width: 2;
 }
 .dial-t1 {
-  fill: #fff;
+  fill: var(--ink);
   font: 700 18px var(--mono);
   text-anchor: middle;
 }
 .dial-t2 {
-  fill: rgba(255, 255, 255, 0.75);
+  fill: rgba(0, 41, 65, 0.7);
   font: 600 11px var(--sans);
   text-anchor: middle;
 }
@@ -589,7 +592,7 @@ button {
 }
 .split-pr {
   flex: 1;
-  background: var(--ink);
+  background: var(--orange);
 }
 .split-legend {
   display: flex;
@@ -647,7 +650,7 @@ button {
 .halftone-bg {
   position: absolute;
   inset: 0;
-  background: conic-gradient(from 90deg at 2px 2px, transparent 25%, rgba(14, 14, 16, 0.09) 0) 0 0 / 9px 9px;
+  background: conic-gradient(from 90deg at 2px 2px, transparent 25%, rgba(0, 41, 65, 0.09) 0) 0 0 / 9px 9px;
   mask: linear-gradient(180deg, transparent, #000 12%, #000 88%, transparent);
   pointer-events: none;
 }
@@ -722,7 +725,7 @@ button {
   background: var(--orange);
 }
 .dial-cell {
-  fill: rgba(247, 246, 242, 0.22);
+  fill: rgba(248, 252, 253, 0.22);
 }
 .dial-face {
   fill: var(--ink);
@@ -759,7 +762,7 @@ button {
   stroke-dasharray: 4 4;
 }
 .bar {
-  fill: rgba(14, 14, 16, 0.16);
+  fill: rgba(0, 41, 65, 0.16);
 }
 .bar-paid {
   fill: var(--orange);
@@ -794,7 +797,7 @@ button {
   font-size: clamp(38px, 4.6vw, 72px);
 }
 .scrub-copy p {
-  color: rgba(247, 246, 242, 0.66);
+  color: rgba(248, 252, 253, 0.66);
   margin: 22px 0 28px;
   max-width: 40ch;
 }
@@ -806,13 +809,13 @@ button {
 }
 .scrub-ded span {
   margin-right: 8px;
-  color: rgba(247, 246, 242, 0.66);
+  color: rgba(248, 252, 253, 0.66);
 }
 .scrub-ded button {
   height: 38px;
   min-width: 58px;
   border-radius: 9px;
-  border: 1.5px solid rgba(247, 246, 242, 0.24);
+  border: 1.5px solid rgba(248, 252, 253, 0.24);
   background: transparent;
   font: 700 14px var(--mono);
   transition:
@@ -824,139 +827,83 @@ button {
   color: var(--ink);
   border-color: var(--paper);
 }
-.scrub-board {
-  background: #18181b;
+.gs-board {
+  background: rgba(248, 252, 253, 0.04);
   border-radius: var(--r);
-  padding: 18px;
+  padding: clamp(20px, 2.6vw, 32px);
 }
-.scrub-chart {
+.gs-read {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 18px;
+}
+.gs-read span {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(248, 252, 253, 0.55);
+  margin-bottom: 6px;
+}
+.gs-read b {
+  font-size: clamp(34px, 4.2vw, 60px);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+.is-paying .gs-pay {
+  color: var(--orange);
+}
+.gs-chart {
+  display: block;
   width: 100%;
   height: auto;
-  display: block;
+  overflow: visible;
 }
-.scrub-chart .grid {
-  stroke: rgba(247, 246, 242, 0.06);
+.gs-zone {
+  fill: rgba(253, 110, 110, 0.1);
 }
-.scrub-closed {
-  fill: rgba(43, 75, 255, 0.07);
-}
-.scrub-day {
-  stroke: rgba(247, 246, 242, 0.12);
-  stroke-dasharray: 2 5;
-}
-.scrub-base {
-  stroke: rgba(247, 246, 242, 0.25);
-}
-.axis.strong {
-  fill: var(--paper);
-  font-weight: 600;
-}
-.scrub-zone {
-  fill: rgba(255, 90, 31, 0.1);
-}
-.scrub-ded-line,
-.scrub-limit-line {
-  stroke: rgba(255, 90, 31, 0.6);
-  stroke-dasharray: 5 5;
-}
-.zone-txt {
-  fill: rgba(255, 140, 100, 0.9);
-  font-weight: 600;
-}
-.scrub-bracket {
-  fill: none;
-  stroke: var(--paper);
-  stroke-width: 1.5;
-  transition: opacity 0.2s;
-}
-.scrub-gap-txt {
-  fill: var(--paper);
-  font: 700 15px var(--mono);
-  transition: opacity 0.2s;
-}
-.scrub-price {
-  fill: var(--paper);
-  font: 700 13px var(--mono);
-  text-anchor: end;
-  paint-order: stroke;
-  stroke: #18181b;
-  stroke-width: 6px;
-}
-.scrub-band {
+.gs-fill {
   fill: var(--orange);
-  opacity: 0.85;
 }
-.scrub-friday {
-  fill: none;
-  stroke: var(--paper);
-  stroke-width: 3;
-}
-.scrub-oracle {
-  stroke: rgba(247, 246, 242, 0.5);
+.gs-oracle {
+  stroke: rgba(248, 252, 253, 0.45);
   stroke-width: 2;
-  stroke-dasharray: 4 7;
+  stroke-dasharray: 3 6;
+  stroke-linecap: round;
 }
-.scrub-weekend {
+.gs-line {
   fill: none;
-  stroke: var(--blue);
+  stroke: var(--sky);
   stroke-width: 3;
   stroke-linejoin: round;
+  stroke-linecap: round;
 }
-.scrub-open rect {
+.gs-open rect {
   fill: var(--paper);
   transition: fill 0.2s;
 }
-.is-paying .scrub-open rect {
+.is-paying .gs-open rect {
   fill: var(--orange);
 }
-.axis {
-  fill: rgba(247, 246, 242, 0.5);
-  font: 500 12px var(--sans);
+.gs-label {
+  fill: rgba(248, 252, 253, 0.5);
+  font: 500 13px var(--sans);
 }
-.axis.end {
+.gs-label-strong {
+  fill: rgba(248, 252, 253, 0.8);
+}
+.gs-end {
   text-anchor: end;
 }
-.axis.mid {
-  text-anchor: middle;
-}
-.scrub-read {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-  margin-top: 14px;
-}
-.scrub-read > div:not(.scrub-meter) {
-  background: rgba(247, 246, 242, 0.06);
-  border-radius: 14px;
-  padding: 16px 18px;
-}
-.label {
-  display: block;
-  font-size: 12px;
+.gs-zone-top {
+  fill: rgba(253, 154, 154, 0.95);
   font-weight: 600;
-  color: rgba(247, 246, 242, 0.55);
-  margin-bottom: 6px;
 }
-.scrub-read b {
-  font-size: clamp(28px, 3.4vw, 48px);
-  line-height: 1;
-}
-.is-paying .scrub-pay {
-  color: var(--orange);
-}
-.scrub-meter {
-  grid-column: 1 / -1;
-  height: 10px;
-  border-radius: 3px;
-  background: rgba(247, 246, 242, 0.08);
-  overflow: hidden;
-}
-.scrub-meter-fill {
-  display: block;
-  height: 100%;
-  background: var(--orange);
-  transform-origin: 0 50%;
-  transform: scaleX(0);
+.gs-price {
+  fill: var(--paper);
+  font-size: 14px;
+  font-weight: 700;
+  text-anchor: end;
 }
 
 /* Audience */
@@ -1025,7 +972,7 @@ button {
   color: var(--ink-2);
 }
 .aud-tab:not(.is-on):hover {
-  background: rgba(247, 246, 242, 0.5);
+  background: rgba(248, 252, 253, 0.5);
 }
 .aud-num {
   font-size: 13px;
@@ -1148,13 +1095,13 @@ button {
   overflow-x: auto;
 }
 .aviz-agent .c {
-  color: rgba(247, 246, 242, 0.45);
+  color: rgba(248, 252, 253, 0.45);
 }
 .aviz-agent .k {
-  color: #9fb0ff;
+  color: #B6DFED;
 }
 .aviz-agent .s {
-  color: #ffb08f;
+  color: #FD9A9A;
 }
 
 /* Agent notes */
@@ -1332,7 +1279,7 @@ button {
   display: flex;
   gap: 8px;
   max-width: 520px;
-  background: rgba(247, 246, 242, 0.12);
+  background: rgba(248, 252, 253, 0.12);
   border-radius: 14px;
   padding: 6px;
 }
@@ -1346,7 +1293,7 @@ button {
   padding: 0 14px;
 }
 .join-form input::placeholder {
-  color: rgba(247, 246, 242, 0.6);
+  color: rgba(248, 252, 253, 0.6);
 }
 .join-form input:focus {
   outline: none;
@@ -1391,7 +1338,7 @@ button {
   aspect-ratio: 1.4;
   border-radius: 16px;
   background: var(--orange);
-  color: #fff;
+  color: var(--on-orange);
   display: grid;
   place-items: center;
   transition:
@@ -1482,7 +1429,7 @@ html.is-splash body {
 }
 .splash-line {
   font: 500 14px var(--mono);
-  color: rgba(247, 246, 242, 0.6);
+  color: rgba(248, 252, 253, 0.6);
 }
 
 /* Responsive */
@@ -1596,16 +1543,9 @@ html.is-splash body {
     align-self: flex-start;
   }
   /* SVG text scales with the chart; bump it so labels stay readable at phone width. */
-  .scrub-chart .axis {
-    font-size: 20px;
-  }
-  .scrub-gap-txt,
-  .scrub-price {
+  .gs-label,
+  .gs-price {
     font-size: 24px;
-  }
-  .scrub-chart .zone-txt,
-  .scrub-chart .scrub-day + text {
-    display: none;
   }
   .scrub {
     padding-top: 84px;
@@ -1614,9 +1554,7 @@ html.is-splash body {
     margin: 14px 0 18px;
     font-size: 14px;
   }
-  .scrub-read b {
-    font-size: 26px;
-  }
+
   .partners-k {
     display: none;
   }

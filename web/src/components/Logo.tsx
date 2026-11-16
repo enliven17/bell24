@@ -5,8 +5,8 @@ export function Mark({ size = 32, tone = 'ink' }: { size?: number; tone?: 'ink' 
     <svg width={size} height={size} viewBox="0 0 64 64" aria-hidden="true">
       <rect x="29" y="6" width="6" height="6" rx="1" fill={body} />
       <path d="M13 37V30a19 19 0 0 1 38 0v7z" fill={body} />
-      <rect x="7" y="42" width="50" height="7" rx="2" fill="var(--blue)" />
-      <rect x="26" y="53" width="12" height="6" rx="1.5" fill="var(--orange)" />
+      <rect x="7" y="42" width="50" height="7" rx="2" fill="var(--orange)" />
+      <rect x="26" y="53" width="12" height="6" rx="1.5" fill={tone === 'ink' ? 'var(--ink)' : 'var(--sky)'} />
     </svg>
   )
 }

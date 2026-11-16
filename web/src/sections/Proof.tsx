@@ -5,7 +5,19 @@ import { BaseMark } from '../components/Logo'
 import { STOCK_LOGOS } from '../components/stockLogos'
 import { gsap, reducedMotion, useGSAP } from '../motion'
 
-const PARTNERS = ['NVDAc', 'Chainlink', 'AAPLc', 'USDC', 'METAc', 'Base', 'GOOGLc', 'x402', 'ERC-4626', 'Coinbase Stocks API']
+// Each partner with its mark: Simple Icons where they exist, a plain stroke glyph for standards (x402, ERC-4626).
+const PARTNERS: [string, string | null][] = [
+  ['NVDAc', STOCK_LOGOS.NVDAc],
+  ['Chainlink', STOCK_LOGOS.Chainlink],
+  ['AAPLc', STOCK_LOGOS.AAPLc],
+  ['USDC', STOCK_LOGOS.USDC],
+  ['METAc', STOCK_LOGOS.METAc],
+  ['Base', null],
+  ['GOOGLc', STOCK_LOGOS.GOOGLc],
+  ['x402', 'stroke:M3 6h18v12H3zM3 10h18M7 15h4'],
+  ['ERC-4626', 'stroke:M4 4h16v16H4zM9 12a3 3 0 1 0 6 0 3 3 0 0 0-6 0M12 4v3M12 17v3'],
+  ['Coinbase Stocks API', STOCK_LOGOS.Coinbase],
+]
 
 const TICKERS = [
   ['NVDAc', '−6.8%', 'down'],
@@ -167,10 +179,20 @@ export default function Proof() {
       <div className="partners">
         <span className="partners-k">Built with</span>
         <Marquee speed={40}>
-          {PARTNERS.map((p) => (
-            <span className="partner" key={p}>
-              {p === 'Base' ? <BaseMark size={18} /> : null}
-              {p}
+          {PARTNERS.map(([name, d]) => (
+            <span className="partner" key={name}>
+              {d === null ? (
+                <BaseMark size={22} />
+              ) : (
+                <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+                  {d.startsWith('stroke:') ? (
+                    <path d={d.slice(7)} fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+                  ) : (
+                    <path d={d} fill="currentColor" />
+                  )}
+                </svg>
+              )}
+              {name}
             </span>
           ))}
         </Marquee>

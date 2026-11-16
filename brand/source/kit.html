@@ -14,7 +14,7 @@
   .ink { background: var(--ink); color: var(--paper); }
   .blue { background: var(--blue); color: var(--paper); }
   .orange { background: var(--orange); color: #fff; }
-  .ink small, .blue small, .orange small { color: rgba(247,246,242,.75); }
+  .ink small, .blue small, .orange small { color: rgba(248, 252, 253,.75); }
   .center { align-items: center; justify-content: center; }
   .sw b { font: 700 44px/1 'Inter Tight'; letter-spacing: -0.03em; }
   .sw code { font: 700 20px 'JetBrains Mono'; }
@@ -44,13 +44,13 @@ if (s === 1) set('1.2fr 1fr 1fr', '1fr 1fr', `
   <div class="card center orange">${lockup('ink', 76)}</div>`)
 
 if (s === 2) set('1.4fr 1fr 1fr', '1fr 1fr', [
-  ['Signal Blue', '#2B4BFF', 'blue', 'Primary. Panels, active states, the pool.'],
-  ['Gap Orange', '#FF5A1F', 'orange', 'Action and payout. Buttons, paid closures.'],
-  ['Ink', '#0E0E10', 'ink', 'Type and dark surfaces.'],
-  ['Paper', '#F7F6F2', '', 'Cards and inputs.'],
-  ['Canvas', '#E7E6E1', '', 'Page ground.'],
+  ['Signal Blue', '#002941', 'blue', 'Primary. Panels, active states, the pool.'],
+  ['Gap Orange', '#FD6E6E', 'orange', 'Action and payout. Buttons, paid closures.'],
+  ['Ink', '#002941', 'ink', 'Type and dark surfaces.'],
+  ['Paper', '#F8FCFD', '', 'Cards and inputs.'],
+  ['Canvas', '#E6F3F8', '', 'Page ground.'],
   ['Base Blue', '#0000FF', 'base', 'Only inside the Base mark.'],
-].map(([n, h, c, u], i) => `<div class="card sw ${c === 'base' ? '' : c}" style="${i === 0 ? 'grid-row:span 2;' : ''}${c === 'base' ? 'background:#0000FF;color:#F7F6F2' : ''}${n === 'Canvas' ? 'background:#E7E6E1;outline:2px solid rgba(14,14,16,.12);outline-offset:-2px' : ''}"><small>${u}</small><div><b>${n}</b><br><code>${h}</code></div></div>`).join(''))
+].map(([n, h, c, u], i) => `<div class="card sw ${c === 'base' ? '' : c}" style="${i === 0 ? 'grid-row:span 2;' : ''}${c === 'base' ? 'background:#0000FF;color:#F8FCFD' : ''}${n === 'Canvas' ? 'background:#E6F3F8;outline:2px solid rgba(0, 41, 65,.12);outline-offset:-2px' : ''}"><small>${u}</small><div><b>${n}</b><br><code>${h}</code></div></div>`).join(''))
 
 if (s === 3) set('1.5fr 1fr', '1fr 1fr', `
   <div class="card" style="grid-row:span 2"><small>Display: Inter Tight 700, Title Case, tight tracking. Archivo Expanded 900 is kept for the wordmark only.</small><div class="display" style="font-size:150px">Covered Past<br>The Bell.</div></div>
@@ -58,7 +58,7 @@ if (s === 3) set('1.5fr 1fr', '1fr 1fr', `
   <div class="card ink"><small>Numbers: JetBrains Mono, tabular</small><div class="mono" style="font-size:64px;font-weight:700;color:var(--orange)">−9.1%  $40.00</div></div>`)
 
 if (s === 4) set('1fr 1fr 1fr', '1fr 1fr', `
-  <div class="card center" style="grid-row:span 2;background-image:linear-gradient(rgba(43,75,255,.15) 1px,transparent 1px),linear-gradient(90deg,rgba(43,75,255,.15) 1px,transparent 1px);background-size:40px 40px"><div style="outline:2px dashed var(--blue);outline-offset:40px">${markSvg('color', 220)}</div><small style="position:absolute;left:32px;bottom:28px">Clear space: the lip's height on every side. Minimum size 20px.</small></div>
+  <div class="card center" style="grid-row:span 2;background-image:linear-gradient(rgba(182, 223, 237,.15) 1px,transparent 1px),linear-gradient(90deg,rgba(182, 223, 237,.15) 1px,transparent 1px);background-size:40px 40px"><div style="outline:2px dashed var(--blue);outline-offset:40px">${markSvg('color', 220)}</div><small style="position:absolute;left:32px;bottom:28px">Clear space: the lip's height on every side. Minimum size 20px.</small></div>
   ${[
     ['No accent lines', 'No thin coloured rules under headings or beside cards.'],
     ['No pills', 'Buttons and tags are squared, 6 to 12px radius.'],
@@ -67,7 +67,7 @@ if (s === 4) set('1fr 1fr 1fr', '1fr 1fr', `
   ].map(([t, b]) => `<div class="card"><span class="x">Rule</span><div><div class="rule">${t}</div><small>${b}</small></div></div>`).join('')}`)
 
 if (s === 5) set('1fr 1fr 1fr', '1fr', `
-  <div class="card center ink"><div style="width:260px;height:260px;border-radius:56px;background:var(--ink);outline:2px solid rgba(247,246,242,.15);display:grid;place-items:center">${markSvg('paper', 170)}</div><small style="position:absolute;left:32px;bottom:28px">App icon</small></div>
+  <div class="card center ink"><div style="width:260px;height:260px;border-radius:56px;background:var(--ink);outline:2px solid rgba(248, 252, 253,.15);display:grid;place-items:center">${markSvg('paper', 170)}</div><small style="position:absolute;left:32px;bottom:28px">App icon</small></div>
   <div class="card" style="padding:0"><canvas id="c"></canvas><div style="position:absolute;left:24px;right:24px;bottom:24px;background:var(--paper);border-radius:20px;padding:24px"><div style="display:flex;gap:10px;align-items:center;font-weight:700">${markSvg('color', 26)} Monday receipt</div><div class="display" style="font-size:68px;margin-top:10px">NVDA <span style="color:var(--orange)">−9.1%</span></div><div class="mono" style="font-size:32px;color:var(--blue);font-weight:700">+$40.00</div></div></div>
   <div class="card blue"><small>Interface</small><div style="display:flex;flex-direction:column;gap:16px;align-items:flex-start"><div class="display" style="font-size:60px">Protect<br>NVDAc</div><span class="btn">Turn on cover &gt;</span><span class="onbase" style="font-size:18px"><i></i>Built on Base</span></div></div>`)
 

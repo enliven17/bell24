@@ -7,14 +7,14 @@
   --paper-2: #efeee9;
   --paper-3: #ffffff;
   --ink-3: #8b8b92;
-  --line-2: rgba(14, 14, 16, 0.07);
+  --line-2: rgba(0, 41, 65, 0.07);
   --blue-soft: #e4e8ff;
   --calm: #c9d1ff;
-  --orange-ink: #b33a0c;
+  --orange-ink: #B53A3A;
   --side-w: 248px;
   --top-h: 68px;
   --pad: 32px;
-  --shadow-pop: 0 24px 60px -16px rgba(14, 14, 16, 0.32), 0 0 0 1px rgba(14, 14, 16, 0.08);
+  --shadow-pop: 0 24px 60px -16px rgba(0, 41, 65, 0.32), 0 0 0 1px rgba(0, 41, 65, 0.08);
 
   display: grid;
   grid-template-columns: var(--side-w) minmax(0, 1fr);
@@ -97,13 +97,13 @@
     color 0.2s;
 }
 .ap-side-link:hover {
-  background: rgba(14, 14, 16, 0.05);
+  background: rgba(0, 41, 65, 0.05);
   color: var(--ink);
 }
 .ap-side-link.ap-is-on {
   background: var(--paper);
   color: var(--ink);
-  box-shadow: 0 1px 2px rgba(14, 14, 16, 0.06);
+  box-shadow: 0 1px 2px rgba(0, 41, 65, 0.06);
 }
 .ap-side-link.ap-is-on svg {
   color: var(--blue);
@@ -117,7 +117,7 @@
   place-items: center;
   border-radius: var(--r-sm);
   background: var(--orange);
-  color: #fff;
+  color: var(--on-orange);
   font-size: 11.5px;
   font-weight: 700;
 }
@@ -408,7 +408,7 @@
 }
 .ap-ui-btn-orange {
   background: var(--orange);
-  color: #fff;
+  color: var(--on-orange);
 }
 .ap-ui-btn-orange:hover:not(:disabled) {
   background: var(--ink);
@@ -440,7 +440,7 @@
   border-color: var(--ink);
 }
 .ap-ui-btn-ghost-paper {
-  border-color: rgba(247, 246, 242, 0.22);
+  border-color: rgba(248, 252, 253, 0.22);
   color: var(--paper);
 }
 .ap-ui-btn-ghost-paper:hover:not(:disabled) {
