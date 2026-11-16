@@ -44,7 +44,7 @@ export default function Agent() {
           {NOTES.map((n) => (
             <article className={`note note-${n.tone}`} key={n.title}>
               <div className="note-art">
-                <img src={`/agent/${n.img}.webp`} alt="" loading="lazy" width="768" height="512" />
+                <img src={`/agent/${n.img}.webp`} alt="" loading="lazy" width="768" height="512" onLoad={(e) => e.currentTarget.classList.add('is-loaded')} />
                 <span className="note-stat">{n.stat}</span>
               </div>
               <div className="note-body">

@@ -14,7 +14,21 @@ export default function App() {
 
   if (path.startsWith('/app'))
     return (
-      <Suspense fallback={<div className="app-loading" />}>
+      <Suspense
+        fallback={
+          <div className="app-loading" aria-busy="true">
+            <span className="skel" />
+            <div className="app-loading-main">
+              <span className="skel" style={{ width: 260, height: 40 }} />
+              <div className="app-loading-row">
+                <span className="skel" style={{ height: 340 }} />
+                <span className="skel" style={{ height: 340 }} />
+              </div>
+              <span className="skel" style={{ height: 220 }} />
+            </div>
+          </div>
+        }
+      >
         <AppShell path={path} />
       </Suspense>
     )

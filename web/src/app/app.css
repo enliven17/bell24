@@ -594,3 +594,40 @@
     padding: 0 10px;
   }
 }
+
+/* Screen skeletons */
+.ap-skel-screen {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.ap-skel-head {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.ap-skel-grid {
+  display: grid;
+  grid-template-columns: var(--cols);
+  gap: 16px;
+  align-items: stretch;
+}
+.ap-skel-card {
+  gap: 14px;
+}
+.ap-skel-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+@media (max-width: 760px) {
+  .ap-skel-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .ap-skel-grid:has(> :nth-child(1):last-child),
+  .ap-skel-grid:has(.ap-skel-row),
+  .ap-skel-grid:has(> :nth-child(2):last-child) {
+    grid-template-columns: 1fr;
+  }
+}
