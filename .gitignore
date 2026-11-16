@@ -7,3 +7,5 @@ dist
 brand/_shot.mjs
 brand/_dom.mjs
 tmp/
+brand/_s2.mjs
+brand/_sp.mjs

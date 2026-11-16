@@ -1,3 +1,4 @@
+import Splash from './components/Splash'
 import Nav from './sections/Nav'
 import Hero from './sections/Hero'
 import Proof from './sections/Proof'
@@ -11,6 +12,7 @@ import Footer from './sections/Footer'
 export default function Landing() {
   return (
     <>
+      <Splash />
       <Nav />
       <main>
         <Hero />

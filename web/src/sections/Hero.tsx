@@ -4,6 +4,7 @@ import Halftone from '../components/Halftone'
 import Link from '../components/Link'
 import Magnetic from '../components/Magnetic'
 import { BaseMark } from '../components/Logo'
+import { splashDone } from '../components/Splash'
 import { gsap, reducedMotion, SplitText, useGSAP } from '../motion'
 
 export default function Hero() {
@@ -32,8 +33,7 @@ export default function Hero() {
           .from('.hero-card > *', { y: 30, autoAlpha: 0, duration: 1, stagger: 0.1 }, 0.55)
           .from('.hero-meta > *', { y: 16, autoAlpha: 0, duration: 0.8, stagger: 0.08 }, 0.7)
       })
-      if (document.fonts.status === 'loaded') intro()
-      else document.fonts.ready.then(intro)
+      Promise.all([document.fonts.ready, splashDone]).then(intro)
 
       // Scroll: the panel shrinks into the page, the title lifts away, the halftone field drifts.
       gsap
