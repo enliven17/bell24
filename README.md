@@ -76,7 +76,7 @@ web/src
 <p align="center"><img src="brand/kit/01-logo.png" width="49%" alt="Logo"> <img src="brand/kit/02-colour.png" width="49%" alt="Colour"></p>
 <p align="center"><img src="brand/kit/03-type.png" width="49%" alt="Type"> <img src="brand/kit/04-usage.png" width="49%" alt="Usage"></p>
 
-Signal Blue `#2B4BFF`, Gap Orange `#FF5A1F`, Ink `#0E0E10`, Paper `#F7F6F2`, Canvas `#E7E6E1`. Archivo for display, Inter for text, JetBrains Mono for numbers. Logos, the kit, banners and social art live in [`brand/`](brand).
+Signal Blue `#2B4BFF`, Gap Orange `#FF5A1F`, Ink `#0E0E10`, Paper `#F7F6F2`, Canvas `#E7E6E1`. Inter Tight for display, Inter for text, JetBrains Mono for numbers, Archivo Expanded for the wordmark only. Logos, the kit, banners and social art live in [`brand/`](brand).
 
 ## Naming
 

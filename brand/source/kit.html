@@ -16,9 +16,9 @@
   .orange { background: var(--orange); color: #fff; }
   .ink small, .blue small, .orange small { color: rgba(247,246,242,.75); }
   .center { align-items: center; justify-content: center; }
-  .sw b { font: 800 44px/1 'Archivo'; font-variation-settings: 'wdth' 118; letter-spacing: -0.03em; }
+  .sw b { font: 700 44px/1 'Inter Tight'; letter-spacing: -0.03em; }
   .sw code { font: 700 20px 'JetBrains Mono'; }
-  .rule { font: 700 26px/1.15 'Archivo'; font-variation-settings: 'wdth' 112; letter-spacing: -0.02em; }
+  .rule { font: 700 26px/1.15 'Inter Tight'; letter-spacing: -0.02em; }
   .x { font: 700 15px 'JetBrains Mono'; color: var(--orange); }
   canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
   .btn { display: inline-flex; align-items: center; gap: 12px; height: 56px; padding: 0 24px; border-radius: 12px; background: var(--orange); color: #fff; font: 600 19px 'Inter'; }
@@ -53,7 +53,7 @@ if (s === 2) set('1.4fr 1fr 1fr', '1fr 1fr', [
 ].map(([n, h, c, u], i) => `<div class="card sw ${c === 'base' ? '' : c}" style="${i === 0 ? 'grid-row:span 2;' : ''}${c === 'base' ? 'background:#0000FF;color:#F7F6F2' : ''}${n === 'Canvas' ? 'background:#E7E6E1;outline:2px solid rgba(14,14,16,.12);outline-offset:-2px' : ''}"><small>${u}</small><div><b>${n}</b><br><code>${h}</code></div></div>`).join(''))
 
 if (s === 3) set('1.5fr 1fr', '1fr 1fr', `
-  <div class="card" style="grid-row:span 2"><small>Display: Archivo, width 118 to 125, weight 800 to 900. Title Case, tight tracking.</small><div class="display" style="font-size:150px">Covered Past<br>The Bell.</div></div>
+  <div class="card" style="grid-row:span 2"><small>Display: Inter Tight 700, Title Case, tight tracking. Archivo Expanded 900 is kept for the wordmark only.</small><div class="display" style="font-size:150px">Covered Past<br>The Bell.</div></div>
   <div class="card"><small>Text: Inter 400 to 700</small><p style="font-size:24px;margin:0;line-height:1.4">Stock tokens on Base trade all weekend. Their oracle doesn't. bell24 covers the jump that lands at the open.</p></div>
   <div class="card ink"><small>Numbers: JetBrains Mono, tabular</small><div class="mono" style="font-size:64px;font-weight:700;color:var(--orange)">−9.1%  $40.00</div></div>`)
 

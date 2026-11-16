@@ -28,7 +28,7 @@ The lockup SVGs keep the wordmark as live Archivo text (loaded from Google Fonts
 | Canvas | `#E7E6E1` | page ground |
 | Base Blue | `#0000FF` | only inside the Base mark |
 
-Archivo (width 118 to 125, weight 800 to 900) for display in Title Case, Inter for text, JetBrains Mono for numbers. All three are SIL OFL.
+Inter Tight 700 for display in Title Case, Inter for text, JetBrains Mono for numbers. Archivo Expanded 900 is reserved for the wordmark. All four are SIL OFL.
 
 ## Rules
 
