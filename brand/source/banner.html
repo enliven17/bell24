@@ -1,0 +1,30 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css">
+<style>
+body{width:100vw;height:100vh;background:var(--bg);overflow:hidden;position:relative;--u:calc(100vh/100)}
+.panel{position:absolute;top:calc(var(--u)*6);right:calc(var(--u)*6);bottom:calc(var(--u)*6);width:46%;border-radius:calc(var(--u)*7);overflow:hidden}
+.panel canvas{position:absolute;inset:0;width:100%;height:100%}
+.notch{position:absolute;right:-1px;bottom:-1px;background:var(--bg);border-top-left-radius:calc(var(--u)*6);padding:calc(var(--u)*5) 0 0 calc(var(--u)*5);display:flex;gap:calc(var(--u)*1.6)}
+.notch span{font:700 calc(var(--u)*4.2)/1 'JetBrains Mono';background:var(--paper);border-radius:calc(var(--u)*1.6);padding:calc(var(--u)*2.4) calc(var(--u)*2.6)}
+.notch span:first-child{background:var(--orange);color:#fff}
+.left{position:absolute;left:calc(var(--u)*9);top:calc(var(--u)*9);bottom:calc(var(--u)*9);width:50%;display:flex;flex-direction:column;justify-content:space-between}
+h1{margin:0;font-size:calc(var(--u)*13.2)}
+h1 em{font-style:normal;color:var(--blue)}
+.foot{display:flex;align-items:center;gap:calc(var(--u)*5);font-size:calc(var(--u)*4.4)}
+.foot p{margin:0;color:var(--ink-2);font-size:calc(var(--u)*4.2)}
+body.sq .left{width:70%}
+</style></head>
+<body>
+<div class="panel"><canvas id="c"></canvas><div class="notch"><span>NVDAc</span><span>AAPLc</span><span>METAc</span><span>GOOGLc</span></div></div>
+<div class="left">
+  <div id="lock"></div>
+  <h1 class="display">Covered past<br>the closing <em>bell.</em></h1>
+  <div class="foot"><span class="onbase"><i></i>Built on Base</span><p>Weekend gap cover for stock tokens</p></div>
+</div>
+<script type="module">
+import { lockup, halftone } from './parts.js'
+document.getElementById('lock').innerHTML = lockup('color', innerHeight * 0.085)
+await document.fonts.ready
+halftone(document.getElementById('c'), { cell: innerHeight * 0.03, t: 3.1, drift: 0.2 })
+document.body.dataset.ready = '1'
+</script></body></html>

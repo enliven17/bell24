@@ -1,0 +1,13 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css">
+<style>body{width:100vw;height:100vh;overflow:hidden;position:relative}
+canvas{position:absolute;inset:0;width:100%;height:100%}
+.tile{position:absolute;inset:22%;background:var(--ink);border-radius:18%;display:grid;place-items:center}
+.tile svg{width:70%;height:70%}</style></head>
+<body><canvas id="c"></canvas><div class="tile" id="t"></div>
+<script type="module">
+import { markSvg, halftone } from './parts.js'
+document.getElementById('t').innerHTML = markSvg('paper')
+halftone(document.getElementById('c'), { cell: innerWidth * 0.045, t: 5 })
+document.body.dataset.ready = '1'
+</script></body></html>

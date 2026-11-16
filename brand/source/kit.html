@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="base.css" />
+<style>
+  body { width: 1600px; height: 1000px; background: var(--bg); overflow: hidden; padding: 64px; display: flex; flex-direction: column; gap: 40px; }
+  header { display: flex; justify-content: space-between; align-items: flex-end; }
+  header h1 { margin: 0; font-size: 92px; }
+  header span { font: 700 18px 'JetBrains Mono'; color: var(--ink-2); }
+  .grid { flex: 1; display: grid; gap: 16px; min-height: 0; }
+  .card { border-radius: 28px; background: var(--paper); padding: 32px; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; }
+  .card small { font: 600 15px 'Inter'; color: var(--ink-2); }
+  .ink { background: var(--ink); color: var(--paper); }
+  .blue { background: var(--blue); color: var(--paper); }
+  .orange { background: var(--orange); color: #fff; }
+  .ink small, .blue small, .orange small { color: rgba(247,246,242,.75); }
+  .center { align-items: center; justify-content: center; }
+  .sw b { font: 800 44px/1 'Archivo'; font-variation-settings: 'wdth' 118; letter-spacing: -0.03em; }
+  .sw code { font: 700 20px 'JetBrains Mono'; }
+  .rule { font: 700 26px/1.15 'Archivo'; font-variation-settings: 'wdth' 112; letter-spacing: -0.02em; }
+  .x { font: 700 15px 'JetBrains Mono'; color: var(--orange); }
+  canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .btn { display: inline-flex; align-items: center; gap: 12px; height: 56px; padding: 0 24px; border-radius: 12px; background: var(--orange); color: #fff; font: 600 19px 'Inter'; }
+</style>
+</head>
+<body>
+<header><h1 class="display" id="title"></h1><span id="n"></span></header>
+<div class="grid" id="g"></div>
+<script type="module">
+import { markSvg, lockup, halftone } from './parts.js'
+const s = Number(new URLSearchParams(location.search).get('s') ?? 1)
+const T = ['Logo', 'Colour', 'Type', 'Usage', 'Applications']
+document.getElementById('title').textContent = T[s - 1]
+document.getElementById('n').textContent = `bell24 brand  0${s} / 05`
+const g = document.getElementById('g')
+const set = (cols, rows, html) => { g.style.gridTemplateColumns = cols; g.style.gridTemplateRows = rows; g.innerHTML = html }
+
+if (s === 1) set('1.2fr 1fr 1fr', '1fr 1fr', `
+  <div class="card center" style="grid-row:span 2">${markSvg('color', 380)}<small style="position:absolute;left:32px;bottom:28px">The mark: a market bell split open. The gap between dome and lip is what bell24 covers.</small></div>
+  <div class="card center">${lockup('color', 76)}</div>
+  <div class="card center ink">${lockup('paper', 76)}</div>
+  <div class="card center blue">${lockup('white', 76)}</div>
+  <div class="card center orange">${lockup('ink', 76)}</div>`)
+
+if (s === 2) set('1.4fr 1fr 1fr', '1fr 1fr', [
+  ['Signal Blue', '#2B4BFF', 'blue', 'Primary. Panels, active states, the pool.'],
+  ['Gap Orange', '#FF5A1F', 'orange', 'Action and payout. Buttons, paid closures.'],
+  ['Ink', '#0E0E10', 'ink', 'Type and dark surfaces.'],
+  ['Paper', '#F7F6F2', '', 'Cards and inputs.'],
+  ['Canvas', '#E7E6E1', '', 'Page ground.'],
+  ['Base Blue', '#0000FF', 'base', 'Only inside the Base mark.'],
+].map(([n, h, c, u], i) => `<div class="card sw ${c === 'base' ? '' : c}" style="${i === 0 ? 'grid-row:span 2;' : ''}${c === 'base' ? 'background:#0000FF;color:#F7F6F2' : ''}${n === 'Canvas' ? 'background:#E7E6E1;outline:2px solid rgba(14,14,16,.12);outline-offset:-2px' : ''}"><small>${u}</small><div><b>${n}</b><br><code>${h}</code></div></div>`).join(''))
+
+if (s === 3) set('1.5fr 1fr', '1fr 1fr', `
+  <div class="card" style="grid-row:span 2"><small>Display: Archivo, width 118 to 125, weight 800 to 900. Title Case, tight tracking.</small><div class="display" style="font-size:150px">Covered Past<br>The Bell.</div></div>
+  <div class="card"><small>Text: Inter 400 to 700</small><p style="font-size:24px;margin:0;line-height:1.4">Stock tokens on Base trade all weekend. Their oracle doesn't. bell24 covers the jump that lands at the open.</p></div>
+  <div class="card ink"><small>Numbers: JetBrains Mono, tabular</small><div class="mono" style="font-size:64px;font-weight:700;color:var(--orange)">−9.1%  $40.00</div></div>`)
+
+if (s === 4) set('1fr 1fr 1fr', '1fr 1fr', `
+  <div class="card center" style="grid-row:span 2;background-image:linear-gradient(rgba(43,75,255,.15) 1px,transparent 1px),linear-gradient(90deg,rgba(43,75,255,.15) 1px,transparent 1px);background-size:40px 40px"><div style="outline:2px dashed var(--blue);outline-offset:40px">${markSvg('color', 220)}</div><small style="position:absolute;left:32px;bottom:28px">Clear space: the lip's height on every side. Minimum size 20px.</small></div>
+  ${[
+    ['No accent lines', 'No thin coloured rules under headings or beside cards.'],
+    ['No pills', 'Buttons and tags are squared, 6 to 12px radius.'],
+    ['No status dots', 'State is said in words: Unprotected, Autopilot.'],
+    ['No em dashes', 'Short sentences, commas and full stops instead.'],
+  ].map(([t, b]) => `<div class="card"><span class="x">Rule</span><div><div class="rule">${t}</div><small>${b}</small></div></div>`).join('')}`)
+
+if (s === 5) set('1fr 1fr 1fr', '1fr', `
+  <div class="card center ink"><div style="width:260px;height:260px;border-radius:56px;background:var(--ink);outline:2px solid rgba(247,246,242,.15);display:grid;place-items:center">${markSvg('paper', 170)}</div><small style="position:absolute;left:32px;bottom:28px">App icon</small></div>
+  <div class="card" style="padding:0"><canvas id="c"></canvas><div style="position:absolute;left:24px;right:24px;bottom:24px;background:var(--paper);border-radius:20px;padding:24px"><div style="display:flex;gap:10px;align-items:center;font-weight:700">${markSvg('color', 26)} Monday receipt</div><div class="display" style="font-size:68px;margin-top:10px">NVDA <span style="color:var(--orange)">−9.1%</span></div><div class="mono" style="font-size:32px;color:var(--blue);font-weight:700">+$40.00</div></div></div>
+  <div class="card blue"><small>Interface</small><div style="display:flex;flex-direction:column;gap:16px;align-items:flex-start"><div class="display" style="font-size:60px">Protect<br>NVDAc</div><span class="btn">Turn on cover &gt;</span><span class="onbase" style="font-size:18px"><i></i>Built on Base</span></div></div>`)
+
+await document.fonts.ready
+const c = document.getElementById('c')
+if (c) halftone(c, { cell: 14, t: 1.4 })
+document.body.dataset.ready = '1'
+</script>
+</body>
+</html>
