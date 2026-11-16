@@ -1087,7 +1087,7 @@ button {
   stroke-width: 1.5;
 }
 .aviz-agent {
-  background: var(--ink);
+  background: #00344f;
   color: var(--paper);
   font-size: 13px;
   line-height: 1.6;
