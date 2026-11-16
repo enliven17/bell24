@@ -17,6 +17,7 @@ const TABS = [
 
 // ponytail: demo wallet and policies live in memory. The contracts and a wallet connector replace this state.
 const START: Record<string, Policy> = {
+  NVDAc: { amount: 1000, deductible: 0.05, limit: 0.15, plan: 'once', budget: 10 },
   AAPLc: { amount: 560, deductible: 0.05, limit: 0.15, plan: 'autopilot', budget: 10 },
 }
 
