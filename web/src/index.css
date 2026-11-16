@@ -369,6 +369,21 @@ button {
 .proof {
   padding-top: clamp(96px, 12vw, 180px);
 }
+.proof-head {
+  display: grid;
+  grid-template-columns: 1.7fr 0.8fr;
+  align-items: end;
+  gap: 40px;
+  margin-bottom: clamp(36px, 5vw, 64px);
+}
+.proof-head h2 {
+  font-size: clamp(38px, 5vw, 76px);
+}
+.proof-head p {
+  color: var(--ink-2);
+  max-width: 44ch;
+  justify-self: end;
+}
 .stats {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -378,22 +393,31 @@ button {
   background: var(--orange);
   color: #fff;
   border-radius: var(--r);
-  padding: 22px 22px 24px;
+  padding: 20px 20px 22px;
   display: flex;
   flex-direction: column;
-  min-height: 260px;
+  min-height: 400px;
 }
 .stat:nth-child(even) {
   background: var(--blue);
 }
-.stat-k {
+.stat-top {
+  display: flex;
+  justify-content: space-between;
   font-size: 13px;
   font-weight: 600;
-  opacity: 0.85;
+}
+.stat-i {
+  opacity: 0.7;
+}
+.stat-viz {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  padding: 18px 0;
 }
 .stat-v {
-  margin-top: auto;
-  font: 800 clamp(56px, 6vw, 92px) / 0.9 var(--display);
+  font: 800 clamp(52px, 5vw, 76px) / 0.9 var(--display);
   font-variation-settings: 'wdth' 120;
   letter-spacing: -0.05em;
 }
@@ -403,17 +427,129 @@ button {
   margin-left: 4px;
 }
 .stat p {
-  margin-top: 14px;
+  margin-top: 12px;
   font-size: 13px;
   line-height: 1.45;
   opacity: 0.88;
+}
+.viz-hours {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(13, 1fr);
+  gap: 4px;
+}
+.viz-hours span {
+  aspect-ratio: 1;
+  border-radius: 3px;
+  background: var(--paper);
+}
+.viz-hours span.is-midnight {
+  background: var(--ink);
+}
+.viz-tickers {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+.tk {
+  background: rgba(247, 246, 242, 0.14);
+  border-radius: 10px;
+  padding: 10px 11px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.tk b {
+  font: 800 16px var(--display);
+  font-variation-settings: 'wdth' 112;
+}
+.tk i {
+  font-style: normal;
+  font-size: 12px;
+  font-weight: 700;
+}
+.tk-down i {
+  color: #ffd0bd;
+}
+.tk-up i {
+  color: #c9f2d6;
+}
+.viz-dial {
+  width: min(150px, 80%);
+  height: auto;
+}
+.dial-track {
+  fill: none;
+  stroke: rgba(247, 246, 242, 0.2);
+  stroke-width: 10;
+}
+.dial-arc {
+  fill: none;
+  stroke: var(--paper);
+  stroke-width: 10;
+}
+.dial-tick {
+  stroke: rgba(247, 246, 242, 0.6);
+  stroke-width: 2;
+}
+.dial-t1 {
+  fill: #fff;
+  font: 700 18px var(--mono);
+  text-anchor: middle;
+}
+.dial-t2 {
+  fill: rgba(255, 255, 255, 0.75);
+  font: 600 11px var(--sans);
+  text-anchor: middle;
+}
+.viz-split {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.split-bar {
+  display: flex;
+  gap: 4px;
+  height: 64px;
+}
+.split-bar span {
+  border-radius: 8px;
+}
+.split-uw {
+  flex: 9;
+  background: var(--paper);
+}
+.split-pr {
+  flex: 1;
+  background: var(--ink);
+}
+.split-legend {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 600;
 }
 .partners {
   margin-top: 14px;
   background: var(--paper);
   border-radius: var(--r);
-  padding: 26px 0;
+  padding: 22px 0 22px 24px;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.partners-k {
+  flex: none;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-2);
+  padding-right: 16px;
+}
+.partners .marquee {
+  flex: 1;
 }
 .marquee {
   overflow: hidden;
@@ -1129,6 +1265,12 @@ button {
   .stats {
     grid-template-columns: 1fr 1fr;
   }
+  .proof-head {
+    grid-template-columns: 1fr;
+  }
+  .proof-head p {
+    justify-self: start;
+  }
   .scrub-inner,
   .aud,
   .foot {
@@ -1185,7 +1327,7 @@ button {
     grid-template-columns: 1fr;
   }
   .stat {
-    min-height: 200px;
+    min-height: 340px;
   }
   .aud-figs {
     grid-template-columns: 1fr;
