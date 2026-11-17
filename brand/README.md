@@ -2,7 +2,7 @@
 
 # bell24 brand
 
-The mark is a market bell split open. The gap between the dome and the lip is the gap bell24 covers; the coral lip is the payout.
+The mark is a b24 tile. Its notch is the same cut corner as the site's hero panel, and the coral 24 block fills it: the hours bell24 keeps watching while the market is shut.
 
 | File | Use | Size |
 |---|---|---|

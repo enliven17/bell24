@@ -14,7 +14,7 @@ const seen = () => {
   }
 }
 
-// Opening screen: the bell rings, the name rises, then the screen splits open along the gap.
+// Opening screen: the 24 block drops into the notch, the name rises, then the screen splits open along the gap.
 export default function Splash() {
   const root = useRef<HTMLDivElement>(null)
   const [skip] = useState(() => seen() || reducedMotion())
@@ -41,8 +41,7 @@ export default function Splash() {
       })
       const tl = gsap.timeline({ defaults: { ease: 'expo.out' }, onComplete: finish })
       tl.from('.splash-mark', { scale: 0.6, autoAlpha: 0, duration: 0.8 })
-        .to('.splash-bell', { rotate: 16, duration: 0.14, ease: 'sine.inOut', yoyo: true, repeat: 5, transformOrigin: '50% 8%' }, 0.3)
-        .to('.splash-bell', { rotate: 0, duration: 0.3, ease: 'elastic.out(1, 0.4)' })
+        .from(['.splash-bell rect', '.splash-bell path:last-child'], { x: 14, y: 14, autoAlpha: 0, duration: 0.7, ease: 'back.out(2)' }, 0.35)
         .from('.splash-word span', { yPercent: 110, duration: 0.9, stagger: 0.04 }, 0.45)
         .from('.splash-line', { autoAlpha: 0, y: 10, duration: 0.6 }, 0.8)
         .to('.splash-content', { autoAlpha: 0, scale: 0.96, duration: 0.4, ease: 'power2.in' }, '+=0.15')

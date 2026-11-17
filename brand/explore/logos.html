@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;700;800;900&family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Space+Grotesk:wght@700&family=Instrument+Sans:wdth,wght@75..100,700&family=Unbounded:wght@700;800&family=Archivo:wdth,wght@100,800&display=block"
+  rel="stylesheet"
+/>
+<style>
+  :root { --bg:#E6F3F8; --paper:#F8FCFD; --ink:#002941; --coral:#FD6E6E; --sky:#B6DFED; }
+  * { box-sizing: border-box; margin: 0; }
+  body { background: #d9ebf2; font-family: 'Inter Tight', sans-serif; padding: 40px; width: 1520px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .card { display: grid; grid-template-columns: 1fr 230px; border-radius: 18px; overflow: hidden; height: 260px; }
+  .light { background: var(--paper); display: flex; align-items: center; justify-content: center; position: relative; }
+  .dark { background: var(--ink); display: flex; align-items: center; justify-content: center; }
+  .no { position: absolute; left: 20px; top: 16px; font: 700 15px 'Inter Tight'; color: #7d97a5; }
+  .name { position: absolute; left: 20px; bottom: 16px; font: 600 14px 'Inter Tight'; color: #7d97a5; }
+  .lock { display: inline-flex; align-items: center; gap: 14px; color: var(--ink); font-size: 56px; line-height: 1; }
+  .dark .lock { color: var(--paper); }
+  svg { display: block; flex: none; }
+</style>
+</head>
+<body>
+<div class="grid" id="g"></div>
+<script>
+const N = '#002941', C = '#FD6E6E', S = '#B6DFED', P = '#F8FCFD'
+
+// each option: mark(fg, bg) returns svg, word(fg) returns html for the wordmark
+const O = [
+  {
+    name: 'Gap b: the stem stops at Friday, the bowl lands Monday',
+    mark: (f) => `<svg width="64" height="64" viewBox="0 0 64 64"><rect x="2" y="2" width="13" height="38" rx="2" fill="${f}"/><rect x="2" y="44" width="13" height="16" rx="2" fill="${C}"/><path fill="${f}" fill-rule="evenodd" fill-rule="evenodd" d="M14 41a19 19 0 1 1 0 .1zM33 34a7 7 0 1 0 0 14a7 7 0 0 0 0-14z"/></svg>`,
+    word: () => `<span style="font:800 1em 'Inter Tight';letter-spacing:-0.045em">bell24</span>`,
+  },
+  {
+    name: 'Halftone bell: the hero field cut to a bell',
+    mark: (f, dark) => {
+      let r = ''
+      const n = 9, c = 64 / n
+      for (let y = 0; y < n; y++) for (let x = 0; x < n; x++) {
+        const cx = x + 0.5 - n / 2, cy = y + 0.5
+        const dome = y >= 1 && y <= 6 && Math.hypot(cx, Math.max(0, 4.6 - cy) * 1.15) <= 3.6
+        const lip = y === 7, top = y === 0 && Math.abs(cx) < 1
+        if (!dome && !lip && !top) continue
+        const s = lip ? c * 0.86 : c * (0.86 - (6 - y) * 0.07)
+        r += `<rect x="${(x * c + (c - s) / 2).toFixed(2)}" y="${(y * c + (c - s) / 2).toFixed(2)}" width="${s.toFixed(2)}" height="${s.toFixed(2)}" rx="1" fill="${lip ? C : f}"/>`
+      }
+      return `<svg width="64" height="64" viewBox="0 0 64 64">${r}</svg>`
+    },
+    word: () => `<span style="font:800 1em 'Bricolage Grotesque';letter-spacing:-0.04em">bell24</span>`,
+  },
+  {
+    name: 'Step: Friday close, Monday open, the gap between',
+    mark: (f) => `<svg width="64" height="64" viewBox="0 0 64 64"><rect x="4" y="6" width="26" height="26" rx="5" fill="${f}"/><rect x="34" y="32" width="26" height="26" rx="5" fill="${C}"/><path d="M30 19h4v13h-4z" fill="${S}"/></svg>`,
+    word: () => `<span style="font:700 1em 'Space Grotesk';letter-spacing:-0.05em">bell24</span>`,
+  },
+  {
+    name: 'Shield bell: protection in one shape',
+    mark: (f, dark) => `<svg width="64" height="64" viewBox="0 0 64 64"><path d="M32 3l25 8v19c0 16-11 26-25 31C18 56 7 46 7 30V11z" fill="${f}"/><path d="M21 38v-6a11 11 0 0 1 22 0v6z" fill="${dark ? N : P}"/><rect x="17" y="41" width="30" height="5" rx="1.5" fill="${C}"/></svg>`,
+    word: () => `<span style="font:800 1em 'Inter Tight';letter-spacing:-0.04em">bell<span style="color:${C}">24</span></span>`,
+  },
+  {
+    name: 'Weekend wedge: 65 of 168 hours, the frozen slice',
+    mark: (f) => {
+      const a = (65 / 168) * Math.PI * 2, r = 28, cx = 32, cy = 32
+      const x = cx + r * Math.sin(a), y = cy - r * Math.cos(a)
+      return `<svg width="64" height="64" viewBox="0 0 64 64"><circle cx="32" cy="32" r="28" fill="${f}"/><path d="M32 32V4A28 28 0 0 1 ${x.toFixed(2)} ${y.toFixed(2)}z" fill="${C}"/></svg>`
+    },
+    word: () => `<span style="font:700 1em 'Instrument Sans';font-stretch:90%;letter-spacing:-0.035em">bell24</span>`,
+  },
+  {
+    name: 'Candle bell: the clapper is a price candle',
+    mark: (f) => `<svg width="64" height="64" viewBox="0 0 64 64"><path d="M10 30V26a22 22 0 0 1 44 0v4z" fill="${f}"/><rect x="4" y="32" width="56" height="6" rx="2" fill="${f}"/><rect x="29.5" y="38" width="5" height="26" rx="1" fill="${C}"/><rect x="23" y="43" width="18" height="15" rx="2.5" fill="${C}"/></svg>`,
+    word: () => `<span style="font:900 1em 'Inter Tight';letter-spacing:-0.05em">bell24</span>`,
+  },
+  {
+    name: '24 bell: the hours inside the bell',
+    mark: (f, dark) => `<svg width="64" height="64" viewBox="0 0 64 64"><path d="M6 50V32a26 26 0 0 1 52 0v18z" fill="${f}"/><rect x="2" y="50" width="60" height="8" rx="2" fill="${C}"/><text x="32" y="44" text-anchor="middle" font-family="Inter Tight" font-weight="800" font-size="24" letter-spacing="-1" fill="${dark ? N : P}">24</text></svg>`,
+    word: () => `<span style="font:700 1em 'Unbounded';letter-spacing:-0.03em;font-size:0.82em">bell24</span>`,
+  },
+  {
+    name: 'Dropped open: wordmark only, 24 lands lower',
+    mark: () => '',
+    word: () => `<span style="font:800 1.25em 'Inter Tight';letter-spacing:-0.05em">bell<span style="color:${C};position:relative;top:0.16em">24</span></span>`,
+  },
+  {
+    name: 'Split l: the second l breaks where the weekend gap lands',
+    mark: () => '',
+    word: (f) => `<span style="font:800 1.25em 'Inter Tight';letter-spacing:-0.045em">be<svg width="0.5em" height="0.73em" viewBox="0 0 40 58" style="display:inline;vertical-align:baseline;margin:0 0.03em 0 0.02em"><rect x="2" y="0" width="12.5" height="58" rx="1" fill="currentColor"/><rect x="24" y="0" width="12.5" height="36" rx="1" fill="currentColor"/><rect x="24" y="41" width="12.5" height="17" rx="1" fill="${C}"/></svg>24</span>`,
+  },
+  {
+    name: 'Notched tile: the hero panel shape as a badge',
+    mark: (f, dark) => `<svg width="64" height="64" viewBox="0 0 64 64"><path d="M14 2h48v34a8 8 0 0 1-8 8h-8a8 8 0 0 0-8 8v2a8 8 0 0 1-8 8H2V14A12 12 0 0 1 14 2z" fill="${f}"/><rect x="44" y="48" width="18" height="14" rx="4" fill="${C}"/><text x="25" y="38" text-anchor="middle" font-family="Archivo" font-stretch="100%" font-weight="800" font-size="30" fill="${dark ? N : P}">b</text></svg>`,
+    word: () => `<span style="font:800 1em 'Archivo';font-stretch:100%;letter-spacing:-0.035em">bell24</span>`,
+  },
+]
+
+const lock = (o, dark) => {
+  const f = dark ? P : N
+  return `<span class="lock">${o.mark(f, dark)}${o.word(f)}</span>`
+}
+document.getElementById('g').innerHTML = O.map((o, i) => `
+  <div class="card">
+    <div class="light"><span class="no">${String(i + 1).padStart(2, '0')}</span>${lock(o, false)}<span class="name">${o.name}</span></div>
+    <div class="dark">${o.mark(P, true) ? `<span class="lock" style="transform:scale(1.6)">${o.mark(P, true)}</span>` : `<span class="lock" style="font-size:34px">${o.word(P)}</span>`}</div>
+  </div>`).join('')
+</script>
+</body>
+</html>

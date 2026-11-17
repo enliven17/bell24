@@ -210,9 +210,9 @@ button {
   align-items: center;
   gap: 0.36em;
   font-family: var(--wordmark);
-  font-variation-settings: 'wdth' 125;
+  font-variation-settings: 'wdth' 100;
   font-weight: 900;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.035em;
   line-height: 1;
 }
 .logo-paper {
@@ -1376,7 +1376,7 @@ button {
 }
 .foot-word {
   font: 900 clamp(100px, 23vw, 360px) / 0.78 var(--wordmark);
-  font-variation-settings: 'wdth' 125;
+  font-variation-settings: 'wdth' 100;
   letter-spacing: -0.06em;
   text-align: center;
   color: var(--ink);
@@ -1487,7 +1487,7 @@ html.is-splash body {
   display: flex;
   overflow: hidden;
   font: 900 clamp(56px, 9vw, 120px) / 1 var(--wordmark);
-  font-variation-settings: 'wdth' 125;
+  font-variation-settings: 'wdth' 100;
   letter-spacing: -0.05em;
   padding-bottom: 0.08em;
 }
